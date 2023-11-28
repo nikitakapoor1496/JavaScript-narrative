@@ -1,10 +1,27 @@
 import { Link, Outlet } from "react-router-dom";
 import logo from "../imgs/logo.png";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../App";
+import UserNavigationPanel from "./user-navigation.component";
 
 const Navbar = () => {
 
     const [searchBox, setSearchBox] = useState(false);
+
+    const [userNavPAnel, setUserNavPAnel] = useState(false);
+
+    const handleuserNavPAnel = () => {
+        setUserNavPAnel(currentVal => !currentVal);
+    }
+
+    const handleBlurFunction = () => {
+        setTimeout(() => {
+            setUserNavPAnel(false);
+        }, 200);
+
+    }
+
+    const { uerAuth, userAuth: { access_token, profile_img } } = useContext(UserContext);
 
     return (
         <>
@@ -22,7 +39,7 @@ const Navbar = () => {
                                 pr-[12%] md:pr-6 rounded-full 
                                 placeholder:text-dark-grey md:pl-12" />
 
-                    <i class="fi fi-br-search absolute right-[10%]
+                    <i className="fi fi-br-search absolute right-[10%]
                             md:pointer-events-none md:left-5 top-1/2 
                             -translate-y-1/2 text-xl text-dark-grey"></i>
                 </div>
@@ -30,22 +47,53 @@ const Navbar = () => {
                 <div className="flex items-center gap-3 md:gap-6 ml-auto">
                     <button className="md:hidden bg-grep w-12 h-12 rounded-full
                                     flex items-center justify-center"
-                        onclick={() => setSearchBox(currentVal => !currentVal)}>
+                        onClick={() => setSearchBox(currentVal => !currentVal)}>
                         <i className="fi fi-br-search text-xl"></i>
                     </button>
 
                     <Link to="/editor" className="hidden md:flex gap-2 link">
-                        <i className="fi fi-ts-file-edit"></i>
+                        <i className="fi fi-rr-file-edit"></i>
                         <p>Write</p>
                     </Link>
 
-                    <Link className="btn-dark py-2" to="/signin">
-                        Sign In
-                    </Link>
+                    {
+                        access_token ?
 
-                    <Link className="btn-light py-2 hidden md:block" to="/signup">
-                        Sign Up
-                    </Link>
+                            <>
+                                <Link to="/dashboard/notification">
+                                    <button className="w-12 h-12 rounded-full bg-grey relative hover:bg-black/10">
+                                        <i className="fi fi-rs-bell text-2xl block mt-1"></i>
+                                    </button>
+                                </Link>
+
+                                <div className="relative" onClick={handleuserNavPAnel} onBlur={handleBlurFunction}>
+                                    <button className="w-12 h-12 mt-1">
+                                        <img src={profile_img} className="w-full h-full object-cover rounded-full" />
+                                    </button>
+
+                                    {
+                                        userNavPAnel ? <UserNavigationPanel /> : ""
+                                    }
+
+
+                                </div>
+
+                            </>
+
+                            :
+
+                            <>
+                                <Link className="btn-dark py-2" to="/signin">
+                                    Sign In
+                                </Link>
+
+                                <Link className="btn-light py-2 hidden md:block" to="/signup">
+                                    Sign Up
+                                </Link>
+                            </>
+                    }
+
+
 
                 </div>
 
