@@ -26,8 +26,8 @@ const Navbar = () => {
     return (
         <>
             <nav className="navbar">
-                <Link to="/" className="flex-none w-10">
-                    <img src={logo} className="w-full" />
+                <Link to="/" className="flex-none w-15">
+                    <img src={logo} className="w-full h-16" />
                 </Link>
 
                 <div className={"absolute bg-white w-full left-0 top-full mt-05 " +
@@ -45,7 +45,7 @@ const Navbar = () => {
                 </div>
 
                 <div className="flex items-center gap-3 md:gap-6 ml-auto">
-                    <button className="md:hidden bg-grep w-12 h-12 rounded-full
+                    <button className="md:hidden bg-grey w-12 h-12 rounded-full
                                     flex items-center justify-center"
                         onClick={() => setSearchBox(currentVal => !currentVal)}>
                         <i className="fi fi-br-search text-xl"></i>
@@ -92,9 +92,6 @@ const Navbar = () => {
                                 </Link>
                             </>
                     }
-
-
-
                 </div>
 
             </nav>
