@@ -1,14 +1,17 @@
 import AnimationWrapper from "../common/page-animation";
 import InputBox from "../components/input.component";
-import googleIcon from "../imgs/google.png";
 import { Link, Navigate } from "react-router-dom";
 import { useContext, useRef } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import axios from "axios";
 import { storeInSession } from "../common/session";
 import { UserContext } from "../App";
+//import googleIcon from "../imgs/google.png";
 
 const UserAuthForm = ({ type }) => {
+    const formStyles = {
+        backgroundImage: 'url("../imgs/logo.png")'
+    };
     //const authForm = useRef();
 
     let { userAuth: { access_token }, setUserAuth } = useContext(UserContext)
@@ -85,7 +88,7 @@ const UserAuthForm = ({ type }) => {
             <AnimationWrapper key={type}>
                 <section className="h-cover flex items-center justify-center">
                     <Toaster />
-                    <form id="formID" className="w-[80%] max-w-[400px]">
+                    <form id="formID" className="w-[80%] max-w-[400px] bg-[url('./imgs/logoBack.png')]" >
                         <h1 className="text-4xl font-gelasio capatalize text-center mg-24">
                             {type == "sign-in" ? "Welcome Back" : "Join us today"}
                         </h1>
@@ -120,11 +123,11 @@ const UserAuthForm = ({ type }) => {
                             <hr className="w-1/2 border-black" />
                         </div>
 
-                        <button className="btn-dark flex items-center justify-center 
+                        {/*<button className="btn-dark flex items-center justify-center 
                                     gap-4 w-[90%] center">
                             <img src={googleIcon} className="w-5" />
                             Continue with Google?
-                        </button>
+                    </button>*/}
 
                         {
                             type == "sign-in"
@@ -148,8 +151,7 @@ const UserAuthForm = ({ type }) => {
 
                     </form>
                 </section>
-            </AnimationWrapper>
-
+            </AnimationWrapper >
     )
 }
 

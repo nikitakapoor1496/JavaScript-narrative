@@ -1,7 +1,27 @@
-POST http://localhost:3000/signin
+# Access_token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1N2JhZWQ3NmNiYmYwMDJjZDVlYjI3NCIsImlhdCI6MTcwMjYwNDUwM30.PJUDv_sZaksTKOSMs2Zii5vM5GgImhevE_91bMHqEhk
+
+# POST http://localhost:3000/signup
+# Content-Type: application/json
+
+# {
+#     "fullname" : "john",
+#     "email": "john@gmail.com",
+#     "password":"John@123"
+# }
+
+
+
+
+POST http://localhost:3000/create-blog
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1N2JhZWQ3NmNiYmYwMDJjZDVlYjI3NCIsImlhdCI6MTcwMjYwNDUwM30.PJUDv_sZaksTKOSMs2Zii5vM5GgImhevE_91bMHqEhk
 
 {
-   "email": "johndoe@hotmail.com",
-    "password": "John123"
+    "title": "Test title @ 3 141 # 4$ 123 ajdhgsej 12",
+    "banner": "https://example.com/image-url",
+    "des": "This is a short des",
+    "content":{
+        "blocks":[1,2]
+    },
+    "tags":["tag1","tag2"]
 }

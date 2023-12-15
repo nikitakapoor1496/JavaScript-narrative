@@ -24,7 +24,7 @@ const UserNavigationPanel = () => {
                     <p>Write</p>
                 </Link>
 
-                <Link to={`/user/${username}`} className="link pl-8 py-4">
+                {/*<Link to={`/user/${username}`} className="link pl-8 py-4">
                     Profile
                 </Link>
 
@@ -34,7 +34,7 @@ const UserNavigationPanel = () => {
 
                 <Link to="/settings/edit-profile" className="link pl-8 py-4">
                     Settings
-                </Link>
+    </Link>*/}
 
                 <span className="absolute border-t border-grey w-[100%]">
                 </span>
